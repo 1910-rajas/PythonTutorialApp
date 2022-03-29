@@ -1,28 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:python_tutorial_app/routes.dart';
+//import 'package:google_fonts/google_fonts.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  String name = "";
   @override
   Widget build(BuildContext context) {
     return Material(
-        color: Color.fromARGB(255, 231, 227, 227),
-        child: Column(
+        color: Color.fromARGB(255, 255, 252, 252),
+        child: SingleChildScrollView(
+            child: Column(
           children: [
             Image.asset(
-              "assets/images/loginimg.png",
+              "assets/images/loginimg2.png",
               fit: BoxFit.cover,
             ),
             SizedBox(
               height: 20.0,
             ),
             Text(
-              "Welcome to PyLearn",
+              "Hello $name!",
               style: TextStyle(
-                fontSize: 26,
-                fontWeight: FontWeight.bold,
+                fontSize: 28,
+                fontWeight: FontWeight.normal,
               ),
             ),
             SizedBox(
-              height: 30.0,
+              height: 50.0,
             ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 32.0),
@@ -33,6 +42,10 @@ class LoginPage extends StatelessWidget {
                       hintText: "Enter username",
                       labelText: "Username",
                     ),
+                    onChanged: (value) {
+                      name = value;
+                      setState(() {});
+                    },
                   ),
                   TextFormField(
                     obscureText: true,
@@ -42,18 +55,39 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 30.0,
+                    height: 70.0,
                   ),
-                  ElevatedButton(
+                  /*  ElevatedButton(
                       child: Text("Log-In"),
                       style: TextButton.styleFrom(),
                       onPressed: () {
-                        print("Hello");
-                      }),
+                        // Navigator.pushNamed(context, )
+                      }),*/
+                  InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, MyRoutes.mainRoute);
+                      },
+                      child: Container(
+                        width: 150,
+                        height: 50,
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Log-In",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.orange,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ))
                 ],
               ),
             ),
           ],
-        ));
+        )));
   }
 }
